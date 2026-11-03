@@ -1,4 +1,4 @@
-﻿import { useRef } from 'react';
+import { useRef } from 'react';
 
 interface FooterProps {
   onRequestPilot: (trigger?: HTMLElement | null) => void;
@@ -18,58 +18,51 @@ export default function Footer({ onRequestPilot }: FooterProps) {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const id = href.slice(1);
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
+    const el = document.getElementById(href.slice(1));
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 68, behavior: 'smooth' });
   };
 
   return (
-    <footer id="footer" style={{ background: '#0B1220' }}>
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
+    <footer id="footer" style={{ background: '#080f1c' }}>
+      {/* Top accent line */}
+      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(15,118,110,0.5) 40%, rgba(15,118,110,0.5) 60%, transparent)' }} />
+
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-14 lg:py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] gap-10 mb-12">
+
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="mb-3">
               <span
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #0F766E 0%, #0d1929 100%)' }}
-                aria-hidden="true"
+                className="text-[1.375rem] font-bold"
+                style={{ color: '#F7F9FC', letterSpacing: '-0.015em' }}
               >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M9 2L15 6V12L9 16L3 12V6L9 2Z" stroke="white" strokeWidth="1.5" fill="none"/>
-                  <path d="M6 9L8 11L12 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-              <span className="text-xl font-bold" style={{ color: '#F7F9FC' }}>
                 Assert<span style={{ color: '#5EEAD4' }}>Trace</span>
               </span>
             </div>
-            <p className="text-sm font-semibold mb-2" style={{ color: '#5EEAD4' }}>
+            <p className="text-[0.8125rem] font-semibold mb-2" style={{ color: '#5EEAD4' }}>
               Complaint Assertion Integrity Platform
             </p>
-            <p className="text-sm leading-relaxed" style={{ color: '#64748B' }}>
+            <p className="text-sm leading-[1.7]" style={{ color: '#475569', maxWidth: '300px' }}>
               Designed for fair, complete and traceable complaint handling.
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: '#475569' }}>
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] mb-5" style={{ color: '#334155' }}>
               Navigation
             </p>
-            <ul className="flex flex-col gap-2" role="list">
+            <ul className="flex flex-col gap-2.5" role="list">
               {FOOTER_NAV.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-sm no-underline transition-colors duration-150"
-                    style={{ color: '#94A3B8' }}
+                    className="text-[0.875rem] no-underline transition-colors duration-150"
+                    style={{ color: '#64748B' }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = '#5EEAD4')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#94A3B8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#64748B')}
                   >
                     {link.label}
                   </a>
@@ -78,35 +71,45 @@ export default function Footer({ onRequestPilot }: FooterProps) {
             </ul>
           </div>
 
-          {/* CTA + notice */}
+          {/* CTA */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: '#475569' }}>
-              Get in touch
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] mb-5" style={{ color: '#334155' }}>
+              Get started
             </p>
-            <p className="text-sm mb-4" style={{ color: '#64748B' }}>
+            <p className="text-sm leading-[1.7] mb-5" style={{ color: '#475569' }}>
               Interested in exploring a benchmark or pilot for your organisation?
             </p>
             <button
               ref={pilotRef}
               onClick={() => onRequestPilot(pilotRef.current)}
-              className="px-5 py-2.5 text-sm font-semibold text-white rounded-lg cursor-pointer transition-all duration-150"
-              style={{ background: '#0F766E' }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#0d6560')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#0F766E')}
+              className="px-5 py-2.5 text-sm font-semibold text-white rounded-lg cursor-pointer transition-all duration-200"
+              style={{
+                background: 'linear-gradient(135deg, #0F766E 0%, #0d6560 100%)',
+                boxShadow: '0 2px 8px rgba(15,118,110,0.35)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(15,118,110,0.45)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = '';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(15,118,110,0.35)';
+              }}
             >
               Request a Pilot
             </button>
           </div>
         </div>
 
+        {/* Bottom bar */}
         <div
-          className="pt-8 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+          className="pt-8 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+          style={{ borderColor: 'rgba(255,255,255,0.06)' }}
         >
-          <p className="text-xs" style={{ color: '#475569' }}>
+          <p className="text-[0.8125rem]" style={{ color: '#334155' }}>
             &copy; {new Date().getFullYear()} AssertTrace. All rights reserved.
           </p>
-          <p className="text-xs" style={{ color: '#475569' }}>
+          <p className="text-[0.8125rem]" style={{ color: '#334155' }}>
             Pilot form entries are stored only in this browser and are not transmitted.
           </p>
         </div>

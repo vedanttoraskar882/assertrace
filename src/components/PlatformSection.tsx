@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useReveal } from '../hooks/useReveal';
 
 interface PlatformSectionProps {
   onRequestPilot: (trigger?: HTMLElement | null) => void;
@@ -6,7 +7,7 @@ interface PlatformSectionProps {
 
 const TABS = [
   { id: 'understanding', label: 'Complaint Understanding' },
-  { id: 'verification', label: 'Source & Account Verification' },
+  { id: 'verification', label: 'Source & Verification' },
   { id: 'response', label: 'Response Assurance' },
   { id: 'evidence', label: 'Evidence & Insights' },
 ];
@@ -81,15 +82,14 @@ const CAPABILITIES = {
   evidence: [
     {
       number: '11',
-      title: 'Sealed Verification Receipt and Ombudsman-Ready Bundle',
+      title: 'Sealed Verification Receipt',
       description:
-        'A proposed tamper-evident record containing findings, source versions, timestamps, account-record references, handler overrides and response coverage. Exports are intended to help human reviewers understand the case without specialist software. This does not imply official Ombudsman endorsement or guaranteed acceptance.',
+        'A proposed tamper-evident record containing findings, source versions, timestamps, account-record references, handler overrides and response coverage. Exports are intended to help human reviewers understand the case without specialist software. Does not imply official Ombudsman endorsement or guaranteed acceptance.',
     },
     {
       number: '12',
       title: 'Representative Pattern Analytics',
-      description:
-        'Identifies recurring templates and citation errors across representative submissions.',
+      description: 'Identifies recurring templates and citation errors across representative submissions.',
     },
     {
       number: '13',
@@ -113,37 +113,38 @@ const CAPABILITIES = {
 };
 
 const ROADMAP = [
-  { phase: 'Months 0–4', description: 'Core extraction, initial source index and benchmark dataset.' },
-  { phase: 'Months 4–12', description: 'Benchmarks, account matching, Two-Way Parity and sealed receipts.' },
-  { phase: 'Year 2', description: 'Confirmation Loop, Regime Router, Registry and first API partnership.' },
-  { phase: 'Year 3', description: 'Agent Intake Gateway, Parity Monitor and additional sector source packs.' },
-  { phase: 'Year 3 onward', description: 'International localisation and broader analytics.' },
+  { phase: 'Months 0–4', items: 'Core extraction, initial source index and benchmark dataset.' },
+  { phase: 'Months 4–12', items: 'Benchmarks, account matching, Two-Way Parity and sealed receipts.' },
+  { phase: 'Year 2', items: 'Confirmation Loop, Regime Router, Registry and first API partnership.' },
+  { phase: 'Year 3', items: 'Agent Intake Gateway, Parity Monitor and additional sector source packs.' },
+  { phase: 'Year 3+', items: 'International localisation and broader analytics.' },
 ];
 
 export default function PlatformSection({ onRequestPilot }: PlatformSectionProps) {
   const [activeTab, setActiveTab] = useState<keyof typeof CAPABILITIES>('understanding');
   const pilotRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useReveal<HTMLDivElement>();
+  const contentRef = useReveal<HTMLDivElement>(0.05);
 
   return (
-    <section id="platform" style={{ background: '#E6F5F1' }}>
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-20 lg:py-28">
+    <section id="platform" style={{ background: '#F0F7F6' }}>
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-20 lg:py-28">
+
         {/* Header */}
-        <div className="max-w-3xl mb-4">
-          <p className="text-sm font-semibold tracking-wide uppercase mb-3" style={{ color: '#0F766E' }}>
+        <div ref={headerRef} className="reveal mb-12">
+          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-4" style={{ color: '#0F766E' }}>
             Platform
           </p>
           <div className="flex flex-wrap items-start gap-4 mb-4">
-            <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: '#0B1220' }}>
+            <h2
+              className="text-[2rem] sm:text-[2.375rem] font-bold leading-[1.2]"
+              style={{ color: '#0B1220', letterSpacing: '-0.02em' }}
+            >
               From incoming assertions to accountable responses
             </h2>
-            <span
-              className="shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full"
-              style={{ background: 'rgba(197,154,69,0.15)', color: '#C59A45', border: '1px solid rgba(197,154,69,0.4)' }}
-            >
-              Planned platform — in development
-            </span>
+            <span className="badge-dev mt-1">In development</span>
           </div>
-          <p className="text-lg leading-relaxed" style={{ color: '#475569' }}>
+          <p className="text-[1.0625rem] leading-[1.75]" style={{ color: '#475569', maxWidth: '580px' }}>
             Explore the planned capabilities connecting complaint understanding, verification,
             response assurance and evidence.
           </p>
@@ -151,107 +152,109 @@ export default function PlatformSection({ onRequestPilot }: PlatformSectionProps
 
         {/* Tabs */}
         <div
-          className="flex flex-wrap gap-2 mb-8 p-1 rounded-xl w-fit"
+          className="flex flex-wrap gap-1.5 mb-8 p-1.5 rounded-xl w-fit"
           role="tablist"
           aria-label="Platform capability groups"
           style={{ background: 'rgba(15,118,110,0.08)' }}
         >
-          {TABS.map((tab) => (
-            <button
-              key={tab.id}
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              aria-controls={`tabpanel-${tab.id}`}
-              id={`tab-${tab.id}`}
-              onClick={() => setActiveTab(tab.id as keyof typeof CAPABILITIES)}
-              className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 cursor-pointer"
-              style={
-                activeTab === tab.id
-                  ? { background: '#0F766E', color: 'white' }
-                  : { color: '#475569', background: 'transparent' }
-              }
-            >
-              {tab.label}
-            </button>
-          ))}
+          {TABS.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`tabpanel-${tab.id}`}
+                id={`tab-${tab.id}`}
+                onClick={() => setActiveTab(tab.id as keyof typeof CAPABILITIES)}
+                className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer"
+                style={
+                  isActive
+                    ? { background: '#0F766E', color: 'white', boxShadow: '0 2px 8px rgba(15,118,110,0.35)' }
+                    : { color: '#475569', background: 'transparent' }
+                }
+                onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.background = 'rgba(15,118,110,0.08)'; }}
+                onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Tab panels */}
-        {TABS.map((tab) => (
-          <div
-            key={tab.id}
-            id={`tabpanel-${tab.id}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${tab.id}`}
-            hidden={activeTab !== tab.id}
-          >
-            <div className="grid sm:grid-cols-2 gap-5 mb-10">
-              {(CAPABILITIES[tab.id as keyof typeof CAPABILITIES] ?? []).map((cap) => (
-                <div
-                  key={cap.number}
-                  className="rounded-xl p-6 bg-white"
-                  style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}
-                >
-                  <div className="flex items-start gap-4">
-                    <span
-                      className="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold"
-                      style={{ background: '#E6F5F1', color: '#0F766E' }}
-                    >
-                      {cap.number}
-                    </span>
-                    <div>
-                      <h3 className="text-base font-bold mb-2" style={{ color: '#0B1220' }}>
-                        {cap.title}
-                      </h3>
-                      <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>
-                        {cap.description}
-                      </p>
+        <div ref={contentRef} className="reveal">
+          {TABS.map((tab) => (
+            <div
+              key={tab.id}
+              id={`tabpanel-${tab.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${tab.id}`}
+              hidden={activeTab !== tab.id}
+            >
+              <div className="grid sm:grid-cols-2 gap-4 mb-10">
+                {(CAPABILITIES[tab.id as keyof typeof CAPABILITIES] ?? []).map((cap) => (
+                  <div
+                    key={cap.number}
+                    className="rounded-xl p-6 bg-white transition-all duration-200"
+                    style={{ border: '1px solid #E9EFF7', boxShadow: '0 1px 4px rgba(11,18,32,0.04)' }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 24px rgba(11,18,32,0.09)';
+                      (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 4px rgba(11,18,32,0.04)';
+                      (e.currentTarget as HTMLElement).style.transform = '';
+                    }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <span
+                        className="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold"
+                        style={{ background: '#E6F5F1', color: '#0F766E' }}
+                      >
+                        {cap.number}
+                      </span>
+                      <div>
+                        <h3 className="text-[0.9375rem] font-bold mb-2" style={{ color: '#0B1220' }}>
+                          {cap.title}
+                        </h3>
+                        <p className="text-sm leading-[1.7]" style={{ color: '#64748B' }}>
+                          {cap.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
-        {/* Planned rollout */}
+        {/* Roadmap */}
         <div
-          className="rounded-2xl overflow-hidden mt-8"
+          className="rounded-2xl overflow-hidden"
           style={{ border: '1px solid #CBD5E1', background: 'white' }}
         >
-          <div
-            className="px-6 py-4 border-b flex items-center gap-3"
-            style={{ borderColor: '#E2E8F0', background: '#0B1220' }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <rect x="1" y="3" width="14" height="11" rx="1.5" stroke="#5EEAD4" strokeWidth="1.2"/>
-              <path d="M5 1v4M11 1v4" stroke="#5EEAD4" strokeWidth="1.2" strokeLinecap="round"/>
-              <path d="M1 7h14" stroke="#5EEAD4" strokeWidth="1.2"/>
+          <div className="px-6 sm:px-8 py-4 flex items-center gap-3" style={{ background: '#0B1220' }}>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <rect x="1" y="2.5" width="13" height="10" rx="1.5" stroke="#5EEAD4" strokeWidth="1.1" />
+              <path d="M4.5 1v3M10.5 1v3" stroke="#5EEAD4" strokeWidth="1.1" strokeLinecap="round" />
+              <path d="M1 6.5h13" stroke="#5EEAD4" strokeWidth="1.1" />
             </svg>
-            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#5EEAD4' }}>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.1em]" style={{ color: '#5EEAD4' }}>
               Planned rollout — indicative phases, not confirmed release dates
             </p>
           </div>
-          <div className="p-6">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="p-6 sm:p-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {ROADMAP.map((item, i) => (
                 <div
                   key={i}
-                  className="flex gap-3 p-4 rounded-lg"
-                  style={{ background: '#F7F9FC', border: '1px solid #E2E8F0' }}
+                  className="rounded-xl p-4"
+                  style={{ background: '#F7F9FC', border: '1px solid #E9EFF7' }}
                 >
-                  <div
-                    className="shrink-0 mt-0.5 w-2 h-2 rounded-full"
-                    style={{ background: '#0F766E' }}
-                  />
-                  <div>
-                    <p className="text-xs font-bold mb-1" style={{ color: '#0F766E' }}>
-                      {item.phase}
-                    </p>
-                    <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>
-                      {item.description}
-                    </p>
-                  </div>
+                  <p className="text-xs font-bold mb-2" style={{ color: '#0F766E' }}>{item.phase}</p>
+                  <p className="text-[0.8125rem] leading-[1.6]" style={{ color: '#475569' }}>{item.items}</p>
                 </div>
               ))}
             </div>
@@ -263,14 +266,25 @@ export default function PlatformSection({ onRequestPilot }: PlatformSectionProps
           <button
             ref={pilotRef}
             onClick={() => onRequestPilot(pilotRef.current)}
-            className="px-8 py-3 font-semibold text-white rounded-lg transition-all duration-150 cursor-pointer"
-            style={{ background: '#0F766E' }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = '#0d6560')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = '#0F766E')}
+            className="px-8 py-3 font-semibold text-white rounded-lg cursor-pointer transition-all duration-200"
+            style={{
+              background: 'linear-gradient(135deg, #0F766E 0%, #0d6560 100%)',
+              boxShadow: '0 4px 16px rgba(15,118,110,0.35)',
+              fontSize: '0.9375rem',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(15,118,110,0.45)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = '';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(15,118,110,0.35)';
+            }}
           >
             Request a Pilot
           </button>
         </div>
+
       </div>
     </section>
   );

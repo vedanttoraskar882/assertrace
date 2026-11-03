@@ -109,9 +109,6 @@ export default function Footer({ onRequestPilot }: FooterProps) {
           <p className="text-[0.8125rem]" style={{ color: '#334155' }}>
             &copy; {new Date().getFullYear()} AssertTrace. All rights reserved.
           </p>
-          <p className="text-[0.8125rem]" style={{ color: '#334155' }}>
-            Pilot form entries are stored only in this browser and are not transmitted.
-          </p>
         </div>
       </div>
     </footer>

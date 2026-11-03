@@ -1,32 +1,5 @@
 import { useReveal } from '../hooks/useReveal';
 
-const PRINCIPLES = [
-  {
-    number: '01',
-    title: 'Grievance first',
-    description:
-      "The customer's actual concerns drive the investigation. All extraction, verification and response work is anchored to those concerns.",
-  },
-  {
-    number: '02',
-    title: 'Source-linked findings',
-    description:
-      'Every verification result carries a reference to the source consulted, the version checked and the date of review.',
-  },
-  {
-    number: '03',
-    title: 'Human decision-making',
-    description:
-      'Complaint handlers remain responsible for every decision. Material findings require review, and overrides are recorded with reasons.',
-  },
-  {
-    number: '04',
-    title: 'Evidence that travels',
-    description:
-      'A proposed sealed verification record follows the case from intake to Final Response and into any referral bundle.',
-  },
-];
-
 const EXPERIENCE_ITEMS = [
   'Customer Resolutions / Complaints Advisor at Arvato Connect',
   'Experience supporting Volkswagen Financial Services',
@@ -48,7 +21,6 @@ function CheckIcon() {
 
 export default function AboutSection() {
   const headerRef = useReveal<HTMLDivElement>();
-  const principlesRef = useReveal<HTMLDivElement>();
   const founderRef = useReveal<HTMLDivElement>();
 
   return (
@@ -56,7 +28,7 @@ export default function AboutSection() {
       <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 lg:py-16">
 
         {/* ── Section header ── */}
-        <div ref={headerRef} className="reveal max-w-[680px] mb-10">
+        <div ref={headerRef} className="reveal max-w-[680px] mb-8">
           <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-2.5" style={{ color: '#0F766E' }}>
             About
           </p>
@@ -77,51 +49,6 @@ export default function AboutSection() {
             response in one proposed verification workflow, helping teams keep the customer's
             concerns at the centre of the investigation.
           </p>
-        </div>
-
-        {/* ── Design principles ── */}
-        <div ref={principlesRef} className="reveal mb-12">
-          <h3
-            className="text-[1.125rem] font-bold mb-5"
-            style={{ color: '#0B1220', letterSpacing: '-0.01em' }}
-          >
-            Design principles
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PRINCIPLES.map((p, i) => (
-              <div
-                key={p.number}
-                className={`rounded-xl p-6 reveal reveal-delay-${i + 1}`}
-                style={{
-                  background: 'white',
-                  border: '1px solid #E9EFF7',
-                  boxShadow: '0 1px 4px rgba(11,18,32,0.04)',
-                  transition: 'box-shadow 0.2s ease, transform 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 24px rgba(11,18,32,0.10)';
-                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 4px rgba(11,18,32,0.04)';
-                  (e.currentTarget as HTMLElement).style.transform = '';
-                }}
-              >
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold mb-4"
-                  style={{ background: '#E6F5F1', color: '#0F766E' }}
-                >
-                  {p.number}
-                </div>
-                <h4 className="text-[0.9375rem] font-bold mb-2" style={{ color: '#0B1220' }}>
-                  {p.title}
-                </h4>
-                <p className="text-sm leading-[1.65]" style={{ color: '#64748B' }}>
-                  {p.description}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* ── Founder card — no avatar ── */}

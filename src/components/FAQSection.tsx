@@ -23,10 +23,10 @@ export default function FAQSection() {
 
   return (
     <section id="faq" style={{ background: '#F0F7F6' }}>
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-20 lg:py-28">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 lg:py-16">
 
-        <div ref={headerRef} className="reveal max-w-[580px] mb-12">
-          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-4" style={{ color: '#0F766E' }}>
+        <div ref={headerRef} className="reveal max-w-[580px] mb-8">
+          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-2.5" style={{ color: '#0F766E' }}>
             FAQ
           </p>
           <h2

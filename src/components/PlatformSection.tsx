@@ -128,14 +128,14 @@ export default function PlatformSection({ onRequestPilot }: PlatformSectionProps
 
   return (
     <section id="platform" style={{ background: '#F0F7F6' }}>
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-20 lg:py-28">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 lg:py-16">
 
         {/* Header */}
-        <div ref={headerRef} className="reveal mb-12">
-          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-4" style={{ color: '#0F766E' }}>
+        <div ref={headerRef} className="reveal mb-8">
+          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-2.5" style={{ color: '#0F766E' }}>
             Platform
           </p>
-          <div className="flex flex-wrap items-start gap-4 mb-4">
+          <div className="flex flex-wrap items-start gap-4 mb-3">
             <h2
               className="text-[2rem] sm:text-[2.375rem] font-bold leading-[1.2]"
               style={{ color: '#0B1220', letterSpacing: '-0.02em' }}
@@ -144,7 +144,7 @@ export default function PlatformSection({ onRequestPilot }: PlatformSectionProps
             </h2>
             <span className="badge-dev mt-1">In development</span>
           </div>
-          <p className="text-[1.0625rem] leading-[1.75]" style={{ color: '#475569', maxWidth: '580px' }}>
+          <p className="text-[1.0625rem] leading-[1.7]" style={{ color: '#475569', maxWidth: '580px' }}>
             Explore the planned capabilities connecting complaint understanding, verification,
             response assurance and evidence.
           </p>
@@ -152,7 +152,7 @@ export default function PlatformSection({ onRequestPilot }: PlatformSectionProps
 
         {/* Tabs */}
         <div
-          className="flex flex-wrap gap-1.5 mb-8 p-1.5 rounded-xl w-fit"
+          className="flex flex-wrap gap-1.5 mb-6 p-1.5 rounded-xl w-fit"
           role="tablist"
           aria-label="Platform capability groups"
           style={{ background: 'rgba(15,118,110,0.08)' }}
@@ -262,7 +262,7 @@ export default function PlatformSection({ onRequestPilot }: PlatformSectionProps
         </div>
 
         {/* CTA */}
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <button
             ref={pilotRef}
             onClick={() => onRequestPilot(pilotRef.current)}

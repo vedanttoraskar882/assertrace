@@ -53,26 +53,26 @@ export default function AboutSection() {
 
   return (
     <section id="about" style={{ background: '#F7F9FC' }}>
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-20 lg:py-28">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 lg:py-16">
 
         {/* ── Section header ── */}
-        <div ref={headerRef} className="reveal max-w-[680px] mb-16">
-          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-4" style={{ color: '#0F766E' }}>
+        <div ref={headerRef} className="reveal max-w-[680px] mb-10">
+          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-2.5" style={{ color: '#0F766E' }}>
             About
           </p>
           <h2
-            className="text-[2rem] sm:text-[2.375rem] font-bold mb-5 leading-[1.2]"
+            className="text-[2rem] sm:text-[2.375rem] font-bold mb-4 leading-[1.2]"
             style={{ color: '#0B1220', letterSpacing: '-0.02em' }}
           >
             Built around the realities of complaint handling
           </h2>
-          <p className="text-[1.0625rem] leading-[1.75] mb-5" style={{ color: '#475569' }}>
+          <p className="text-[1.0625rem] leading-[1.7] mb-4" style={{ color: '#475569' }}>
             Complaint submissions can combine genuine concerns with repeated assertions, incorrect
             citations and unsupported interpretations. Handlers must identify the actual grievance,
             check the evidence and prepare a complete response. AssertTrace is designed to make
             that work more structured and traceable.
           </p>
-          <p className="text-[1.0625rem] leading-[1.75]" style={{ color: '#475569' }}>
+          <p className="text-[1.0625rem] leading-[1.7]" style={{ color: '#475569' }}>
             AssertTrace connects the incoming complaint, the supporting evidence and the outgoing
             response in one proposed verification workflow, helping teams keep the customer's
             concerns at the centre of the investigation.
@@ -80,9 +80,9 @@ export default function AboutSection() {
         </div>
 
         {/* ── Design principles ── */}
-        <div ref={principlesRef} className="reveal mb-20">
+        <div ref={principlesRef} className="reveal mb-12">
           <h3
-            className="text-[1.125rem] font-bold mb-8"
+            className="text-[1.125rem] font-bold mb-5"
             style={{ color: '#0B1220', letterSpacing: '-0.01em' }}
           >
             Design principles

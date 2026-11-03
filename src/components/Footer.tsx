@@ -27,8 +27,8 @@ export default function Footer({ onRequestPilot }: FooterProps) {
       {/* Top accent line */}
       <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(15,118,110,0.5) 40%, rgba(15,118,110,0.5) 60%, transparent)' }} />
 
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-14 lg:py-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] gap-10 mb-12">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-10 lg:py-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] gap-8 mb-8">
 
           {/* Brand */}
           <div>

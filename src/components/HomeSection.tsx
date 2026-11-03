@@ -60,12 +60,12 @@ export default function HomeSection({ onRequestPilot }: HomeSectionProps) {
 
   return (
     <section id="home" className="hero-mesh pt-[68px]">
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-20 lg:py-28">
-        <div className="grid lg:grid-cols-[1fr_1fr] gap-14 lg:gap-20 items-center">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 lg:py-16">
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-14 items-center">
 
           {/* ── Copy ── */}
           <div ref={heroRef} className="reveal">
-            <div className="mb-6">
+            <div className="mb-4">
               <span
                 className="inline-block px-3 py-1 text-[0.7rem] font-semibold tracking-widest uppercase rounded-full"
                 style={{
@@ -80,7 +80,7 @@ export default function HomeSection({ onRequestPilot }: HomeSectionProps) {
             </div>
 
             <h1
-              className="text-[2rem] sm:text-[2.5rem] lg:text-[2.75rem] font-bold leading-[1.18] mb-6"
+              className="text-[2rem] sm:text-[2.5rem] lg:text-[2.75rem] font-bold leading-[1.18] mb-4"
               style={{ color: '#F7F9FC', letterSpacing: '-0.02em' }}
             >
               Verify what arrives.{' '}
@@ -88,13 +88,13 @@ export default function HomeSection({ onRequestPilot }: HomeSectionProps) {
               Prove the reply answers it.
             </h1>
 
-            <p className="text-[1.0625rem] leading-[1.75] mb-10" style={{ color: '#94A3B8', maxWidth: '520px' }}>
+            <p className="text-[1.0625rem] leading-[1.7] mb-8" style={{ color: '#94A3B8', maxWidth: '520px' }}>
               AssertTrace is being developed to help complaint teams verify assertions and
               citations, understand the customer's concerns, and check that every point is
               addressed in the final response—with source-linked evidence and human oversight.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-12">
+            <div className="flex flex-wrap gap-3 mb-8">
               <button
                 ref={pilotBtnRef}
                 onClick={() => onRequestPilot(pilotBtnRef.current)}

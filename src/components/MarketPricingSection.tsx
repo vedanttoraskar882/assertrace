@@ -83,11 +83,11 @@ export default function MarketPricingSection({ onRequestPilot }: MarketPricingSe
 
   return (
     <section id="market-pricing" style={{ background: '#F7F9FC' }}>
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-20 lg:py-28">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 lg:py-16">
 
         {/* Header */}
-        <div ref={headerRef} className="reveal max-w-[640px] mb-14">
-          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-4" style={{ color: '#0F766E' }}>
+        <div ref={headerRef} className="reveal max-w-[640px] mb-10">
+          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-2.5" style={{ color: '#0F766E' }}>
             Market &amp; Pricing
           </p>
           <h2
@@ -99,8 +99,8 @@ export default function MarketPricingSection({ onRequestPilot }: MarketPricingSe
         </div>
 
         {/* Target market */}
-        <div ref={marketRef} className="reveal mb-20">
-          <div className="grid sm:grid-cols-3 gap-5 mb-8">
+        <div ref={marketRef} className="reveal mb-12">
+          <div className="grid sm:grid-cols-3 gap-5 mb-6">
             {TARGET_MARKETS.map((tm) => (
               <div
                 key={tm.priority}
@@ -145,15 +145,15 @@ export default function MarketPricingSection({ onRequestPilot }: MarketPricingSe
         </div>
 
         {/* Pricing header */}
-        <div ref={pricingRef} className="reveal mb-8">
+        <div ref={pricingRef} className="reveal mb-6">
           <h2
-            className="text-[1.625rem] sm:text-[2rem] font-bold mb-5"
+            className="text-[1.625rem] sm:text-[2rem] font-bold mb-3"
             style={{ color: '#0B1220', letterSpacing: '-0.02em' }}
           >
             Indicative commercial options
           </h2>
           <div
-            className="rounded-xl px-5 py-4 flex items-start gap-3"
+            className="rounded-xl px-5 py-3.5 flex items-start gap-3"
             style={{ background: 'rgba(197,154,69,0.08)', border: '1px solid rgba(197,154,69,0.3)' }}
           >
             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true" className="shrink-0 mt-0.5">
@@ -168,7 +168,7 @@ export default function MarketPricingSection({ onRequestPilot }: MarketPricingSe
         </div>
 
         {/* Pricing cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {MAIN_PLANS.map((plan, i) => (
             <div
               key={plan.name}

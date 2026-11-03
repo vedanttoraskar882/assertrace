@@ -83,27 +83,27 @@ export default function HowItWorksSection() {
 
   return (
     <section id="how-it-works" style={{ background: 'white' }}>
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-20 lg:py-28">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 lg:py-16">
 
         {/* Header */}
-        <div ref={headerRef} className="reveal max-w-[620px] mb-16">
-          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-4" style={{ color: '#0F766E' }}>
+        <div ref={headerRef} className="reveal max-w-[620px] mb-10">
+          <p className="text-[0.75rem] font-bold tracking-[0.12em] uppercase mb-2.5" style={{ color: '#0F766E' }}>
             How It Works
           </p>
           <h2
-            className="text-[2rem] sm:text-[2.375rem] font-bold mb-4 leading-[1.2]"
+            className="text-[2rem] sm:text-[2.375rem] font-bold mb-3 leading-[1.2]"
             style={{ color: '#0B1220', letterSpacing: '-0.02em' }}
           >
             A clear path from complaint to verified response
           </h2>
-          <p className="text-[1.0625rem] leading-[1.75]" style={{ color: '#475569' }}>
+          <p className="text-[1.0625rem] leading-[1.7]" style={{ color: '#475569' }}>
             The proposed six-step workflow connects intake, understanding, verification,
             review, response checking and evidence preservation.
           </p>
         </div>
 
         {/* Steps grid */}
-        <div ref={stepsRef} className="reveal grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
+        <div ref={stepsRef} className="reveal grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {STEPS.map((step) => (
             <div
               key={step.number}
